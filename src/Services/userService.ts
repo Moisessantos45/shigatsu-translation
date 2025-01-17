@@ -71,26 +71,26 @@ const fromToJsonMapChapter = (
 };
 
 interface Illustration {
-  imagen: string;
+  image: string;
 }
 
 const extractIllustrations = (
   items: (novelData | volumenData)[]
 ): Illustration[] => {
   const validImageUrls = ["https://i.ibb.co", "https://res.cloudinary"];
-  const imageKeys = ["imagen", "background"] as const;
+  const imageKeys = ["portada", "background"] as const;
 
   return items.reduce<Illustration[]>((illustrations, item) => {
     imageKeys.forEach((key) => {
-      const imageUrl = item[key];
+      const imageUrl = (item as never)[key];
       if (!imageUrl || typeof imageUrl !== "string") return;
 
       const isValidBackground =
         key !== "background" ||
-        validImageUrls.some((url) => imageUrl.startsWith(url));
+        validImageUrls.some((url) => (imageUrl as string).startsWith(url))
 
       if (isValidBackground) {
-        illustrations.push({ imagen: imageUrl });
+        illustrations.push({ image: imageUrl });
       }
     });
 
