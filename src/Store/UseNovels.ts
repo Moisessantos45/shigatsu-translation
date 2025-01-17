@@ -104,7 +104,8 @@ const useNovels = create<StateNovels>()((set, get) => ({
         (acc: Partial<novelDataWithNotIdNNovel>, key) => {
           const typedKey = key as keyof typeof rest;
           if (rest[typedKey] !== findNovel[typedKey]) {
-            acc[typedKey] = rest[typedKey];
+            // eslint-disable-next-line
+            acc[typedKey] = rest[typedKey] as any;
           }
           return acc;
         },

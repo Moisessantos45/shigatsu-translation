@@ -341,7 +341,8 @@ const useChapters = create<StateChapters>()((set, get) => ({
         (acc: Partial<chapterDataWithoutContentId>, key) => {
           const typedKey = key as keyof typeof rest;
           if (rest[typedKey] !== findChapter[typedKey]) {
-            acc[typedKey] = rest[typedKey];
+            // eslint-disable-next-line
+            acc[typedKey] = rest[typedKey] as any;
           }
           return acc;
         },
