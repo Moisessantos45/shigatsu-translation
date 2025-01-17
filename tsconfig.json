@@ -40,7 +40,10 @@
       ],
       "@/Utils/*": [
         "Utils/*"
-      ]
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
