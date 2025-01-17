@@ -16,7 +16,7 @@ const roleOptions = [
 ];
 
 const AllUsers = (): JSX.Element => {
-  const { changeUserState, deleteUser } = useUserStore();
+  const { deleteUser } = useUserStore();
   const {
     deleteContent,
     setDeleteContent,
@@ -24,7 +24,7 @@ const AllUsers = (): JSX.Element => {
     setModalConfirmDelete,
     setProvideDataUser,
   } = useAdminContentStore();
-  const { dataUser, modalVisible } = useUserStore();
+  const { dataUser } = useUserStore();
   const [allGetUsers, setAllGetUsers] = useState<userData[]>([]);
 
   const statusAsignadoRef = useRef<boolean>(deleteContent);
@@ -54,20 +54,20 @@ const AllUsers = (): JSX.Element => {
     retry: 0,
   });
 
-  const handleClickStatus = (id: string) => {
-    console.log("click", id);
-    // setTimeout(() => {
-    //   if (statusAsignadoRef.current) {
-    //     setDeleteContent(false);
-    //     setModalConfirmDelete(false);
-    //     changeUserState(id);
-    //     const newAllUsers = allGetUsers.filter((item) =>
-    //       item.id === id ? { ...item, userStatus: !item.status } : item
-    //     );
-    //     setAllGetUsers(newAllUsers);
-    //   }
-    // }, 10000);
-  };
+  // const handleClickStatus = (id: string) => {
+  //   console.log("click", id);
+  //   setTimeout(() => {
+  //     if (statusAsignadoRef.current) {
+  //       setDeleteContent(false);
+  //       setModalConfirmDelete(false);
+  //       changeUserState(id);
+  //       const newAllUsers = allGetUsers.filter((item) =>
+  //         item.id === id ? { ...item, userStatus: !item.status } : item
+  //       );
+  //       setAllGetUsers(newAllUsers);
+  //     }
+  //   }, 10000);
+  // };
 
   const handelClickDelete = (id: string) => {
     setTimeout(() => {

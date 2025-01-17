@@ -1,22 +1,22 @@
 import useUserStore from "../Store/useUserStore";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UrlBackendPrivate from "../Config/UrlBackendPrivate";
-import { toastify } from "@/Utils/Utils";
+import { toastify } from "@/Utils/utils";
 
 const PageOtpVerificaction = () => {
   const { idUser } = useParams<{ idUser: string }>();
-  const { dataUser, setLoadingSite, verifyUser } = useUserStore();
+  const { dataUser, setLoadingSite } = useUserStore();
   const [code2fa, setOtp] = useState<string>("");
   const [contEnvios, setContEnvios] = useState<number>(0);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (verifyUser()) {
-      navigate(`/dashboard/${dataUser.idUser}`);
-    }
-  }, [dataUser, navigate]);
+  // useEffect(() => {
+  //   if (verifyUser()) {
+  //     navigate(`/dashboard/${dataUser.id}`);
+  //   }
+  // }, [dataUser, navigate]);
 
   const handelSubmit = async (
     e: React.FormEvent<HTMLFormElement>
@@ -29,7 +29,7 @@ const PageOtpVerificaction = () => {
 
       toastify("Usuario Verificado", true);
       setLoadingSite(true);
-      navigate(`/dashboard/${dataUser.idUser}`);
+      navigate(`/dashboard/${dataUser.id}`);
     } catch (error) {
       if (error instanceof Error) {
         toastify(error.message, false);
@@ -60,7 +60,7 @@ const PageOtpVerificaction = () => {
               <p>User Verification</p>
             </div>
             <div className="flex flex-row text-xl font-medium text-gray-400">
-              <p>{dataUser.userName}</p>
+              <p>{dataUser.full_name}</p>
             </div>
           </div>
           <div>
